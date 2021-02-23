@@ -32,11 +32,11 @@ io.on('connection', (socket) => {
     //}
   })
 
-socket.on('MonitorSteamimg', (msg) => {
-    if(msg == 'onSteam'){
-        socket.emit('client-responeSteam', "onSteammm");
-    }
-  });
+// socket.on('MonitorSteamimg', (msg) => {
+//     if(msg == 'onSteam'){
+//         socket.emit('client-responeSteam', "onSteammm");
+//     }
+//   });
 })
 
 http.listen(4001, function() {
