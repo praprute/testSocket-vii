@@ -19,25 +19,24 @@ const dir = './pic'
 io.on('connection', (socket) => {
 
 
+socket.on('MonitorSteamimg', (msg) => {
+   if(msg == 'onSteam'){
+            // socket.emit('client-responeSteam', "onSteammm");
   socket.on('RecieveBs64FromAI', (b64Img) => {
     console.log(b64Img)
-    //if(b64Img.camName == "Notebook"){
         if(b64Img){
         console.log('cam-start')
-        socket.emit('client-responeSteam','ddddd')
+        socket.emit('clientResponeSteam', b64Img.image);
         socket.emit('pong')
-        // socket.emit('client-responeSteam', b64Img.image);
+        
         }
        
         // socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
     //}
   })
 
-// socket.on('MonitorSteamimg', (msg) => {
-//     if(msg == 'onSteam'){
-//         socket.emit('client-responeSteam', "onSteammm");
-//     }
-//   });
+    }
+  });
 })
 
 http.listen(4001, function() {
