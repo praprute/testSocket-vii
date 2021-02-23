@@ -16,10 +16,9 @@ const io = require('socket.io')(http, {
 const path = require('path');
 const fs = require('fs')
 const dir = './pic'
+var imgValue 
 
 io.on('connection', (socket) => {
-
-var imgValue 
 
     socket.on('RecieveBs64FromAI', (b64Img) => {
     console.log(b64Img)
@@ -29,11 +28,10 @@ var imgValue
         socket.emit('pong')
         }
         // socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
-  })
+  });
 
   socket.on('MonitorSteamimg', (msg) => {
   socket.emit('clientResponeSteam', imgValue);
-//   socket.emit('clientResponeSteam')
   });
 
 
