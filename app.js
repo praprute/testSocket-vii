@@ -17,21 +17,31 @@ const path = require('path');
 const fs = require('fs')
 const dir = './pic'
 io.on('connection', (socket) => {
-    
 
   socket.on('RecieveBs64FromAI', (b64Img) => {
     console.log(b64Img)
-    if(b64Img.camName == "Notebook"){
+    //if(b64Img.camName == "Notebook"){
         console.log('cam-start')
         socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
-    }
-    //socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
+    //}
   })
 
 socket.on('MonitorSteamimg', (msg) => {
     if(msg == 'onSteam'){
         socket.emit('client-responeSteam', "onSteammm");
-        // const testFolder = './pic/';
+    }
+  });
+})
+
+http.listen(4001, function() {
+  console.log('listening on port 4001')
+})
+
+
+
+
+
+ // const testFolder = './pic/';
         // fs.readdir(testFolder, (err, files) => {
         //     files.forEach(file => {
         //     setTimeout(function() {
@@ -43,10 +53,3 @@ socket.on('MonitorSteamimg', (msg) => {
         //     });
         // }, 2000);
         //   });
-    }
-  });
-})
-
-http.listen(4001, function() {
-  console.log('listening on port 4001')
-})
