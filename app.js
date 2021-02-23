@@ -29,6 +29,7 @@ socket.on('MonitorSteamimg', (msg) => {
         }
         // socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
   })
+  socket.emit('clientResponeSteam')
   });
 })
 
