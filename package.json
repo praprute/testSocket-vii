@@ -1,0 +1,21 @@
+{
+  "name": "vii-b-socket",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "minio": "^7.0.18",
+    "nodemon": "^2.0.7",
+    "socket.io": "^3.1.1"
+  }
+}
