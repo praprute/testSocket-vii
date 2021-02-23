@@ -16,27 +16,19 @@ const io = require('socket.io')(http, {
 const path = require('path');
 const fs = require('fs')
 const dir = './pic'
+
 io.on('connection', (socket) => {
 
-
 socket.on('MonitorSteamimg', (msg) => {
-   if(msg == 'onSteam'){
-       console.log('os')
-            // socket.emit('client-responeSteam', "onSteammm");
-  socket.on('RecieveBs64FromAI', (b64Img) => {
+    socket.on('RecieveBs64FromAI', (b64Img) => {
     console.log(b64Img)
         if(b64Img){
         console.log('cam-start')
         socket.emit('clientResponeSteam', b64Img.image);
         socket.emit('pong')
-        
         }
-       
         // socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
-    //}
   })
-
-    }
   });
 })
 
