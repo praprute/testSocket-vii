@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
     console.log(b64Img)
         if(b64Img){
         console.log('cam-start')
-        imgValue = b64Img.image
+        imgValue = "data:image/jpeg;base64,"+ b64Img.image.toString("base64");
         socket.emit('pong')
         }
         // socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
