@@ -22,7 +22,8 @@ io.on('connection', (socket) => {
     console.log(b64Img)
     //if(b64Img.camName == "Notebook"){
         console.log('cam-start')
-        socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
+        socket.emit('client-responeSteam','ddddd')
+        // socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
     //}
   })
 
