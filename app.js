@@ -23,11 +23,12 @@ io.on('connection', (socket) => {
     console.log(msgg)
   })
   // socket.emit('check-connection', 'connect success full')
+  socket.on('RecieveBs64FromAI', (b64Img) => {
+    console.log(b64Img)
+    socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
+  })
     socket.on('MonitorSteamimg', (msg) => {
     if(msg == 'onSteam'){
-        socket.on('RecieveBs64FromAI', (b64Img) => {
-            socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
-        })
         // const testFolder = './pic/';
         // fs.readdir(testFolder, (err, files) => {
         //     files.forEach(file => {
