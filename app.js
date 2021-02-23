@@ -19,18 +19,25 @@ const dir = './pic'
 
 io.on('connection', (socket) => {
 
-socket.on('MonitorSteamimg', (msg) => {
+var imgValue 
+
     socket.on('RecieveBs64FromAI', (b64Img) => {
     console.log(b64Img)
         if(b64Img){
         console.log('cam-start')
-        socket.emit('clientResponeSteam', b64Img.image);
+        imgValue = b64Img.image
         socket.emit('pong')
         }
         // socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
   })
-  socket.emit('clientResponeSteam')
+
+  socket.on('MonitorSteamimg', (msg) => {
+  socket.emit('clientResponeSteam', imgValue);
+//   socket.emit('clientResponeSteam')
   });
+
+
+
 })
 
 http.listen(4001, function() {
