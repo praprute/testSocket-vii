@@ -23,15 +23,14 @@ io.on('connection', (socket) => {
     socket.on('RecieveBs64FromAI', (b64Img) => {
     console.log(b64Img)
         if(b64Img){
-        console.log('cam-start')
-        imgValue = "data:image/jpg;base64,"+ b64Img.image.toString("base64");
+        imgValue = b64Img.image;
         socket.emit('pong')
         }
         // socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
-  });
+    });
 
-  socket.on('MonitorSteamimg', (msg) => {
-  socket.emit('clientResponeSteam', imgValue);
+    socket.on('MonitorSteamimg', (msg) => {
+    socket.emit('clientResponeSteam', imgValue);
   });
 
 
