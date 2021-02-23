@@ -21,7 +21,7 @@ var imgValue
 io.on('connection', (socket) => {
 
     socket.on('RecieveBs64FromAI', (b64Img) => {
-    console.log(b64Img)
+    // console.log(b64Img)
         if(b64Img){
         imgValue = b64Img.image;
         socket.emit('pong')
