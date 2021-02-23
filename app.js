@@ -21,11 +21,16 @@ io.on('connection', (socket) => {
 
   socket.on('RecieveBs64FromAI', (b64Img) => {
     console.log(b64Img)
-    socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
+    if(b64Img.camName == "Notebook"){
+        console.log('cam-start')
+        socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
+    }
+    //socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
   })
-  
-    socket.on('MonitorSteamimg', (msg) => {
+
+socket.on('MonitorSteamimg', (msg) => {
     if(msg == 'onSteam'){
+        socket.emit('client-responeSteam', "onSteammm");
         // const testFolder = './pic/';
         // fs.readdir(testFolder, (err, files) => {
         //     files.forEach(file => {
