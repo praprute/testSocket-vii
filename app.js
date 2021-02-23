@@ -21,6 +21,7 @@ io.on('connection', (socket) => {
 
 socket.on('MonitorSteamimg', (msg) => {
    if(msg == 'onSteam'){
+       console.log('os')
             // socket.emit('client-responeSteam', "onSteammm");
   socket.on('RecieveBs64FromAI', (b64Img) => {
     console.log(b64Img)
