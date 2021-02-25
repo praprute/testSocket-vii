@@ -17,9 +17,14 @@ const path = require('path');
 const fs = require('fs')
 const dir = './pic'
 var imgValue 
+var receiver = null
 
 io.on('connection', (socket) => {
-
+    
+    socket.emit("GetID", socket.id)
+    socket.on('SetReceiverID', (id) => {
+       receiver = id
+    })
     socket.on('RecieveBs64FromAI', (b64Img) => {
     // console.log(b64Img)
         if(b64Img){
@@ -29,10 +34,17 @@ io.on('connection', (socket) => {
         // socket.emit('client-responeSteam', "data:image/jpeg;base64,"+ b64Img.toString("base64"));
     });
 
+
     socket.on('MonitorSteamimg', (msg) => {
+        if (receiver == null){
+          console.log("receiver is null")
+	} else {
+          console.log("Send",msg,"to",receiver)
+	  io.to(receiver).emit'clientResponeSteam', msg)
+	}
         console.log(msg)
     // socket.emit('clientResponeSteam', "data:image/jpeg;base64,"+ msg);
-    socket.emit('clientResponeSteam', msg)
+ //   socket.emit('clientResponeSteam', msg)
   });
 
 
