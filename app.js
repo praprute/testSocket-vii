@@ -30,6 +30,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('MonitorSteamimg', (msg) => {
+        console.log(msg)
     // socket.emit('clientResponeSteam', "data:image/jpeg;base64,"+ msg);
     socket.emit('clientResponeSteam', msg)
   });
