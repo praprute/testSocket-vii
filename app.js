@@ -21,12 +21,12 @@ var receiver = null
 
 io.on('connection', (socket) => {
     var id = socket.id;
-    console.log(id)   
-    socket.emit("GetID", id)
-    socket.on('SetReceiverID', (id) => {
-	console.log("SetReceiverID",id)
-       receiver = id
-    })
+//    console.log(id)   
+//    socket.emit("GetID", id)
+//    socket.on('SetReceiverID', (id) => {
+//	console.log("SetReceiverID",id)
+ //      receiver = id
+ //   })
     socket.on('RecieveBs64FromAI', (b64Img) => {
     // console.log(b64Img)
         if(b64Img){
@@ -38,12 +38,12 @@ io.on('connection', (socket) => {
 
 
     socket.on('MonitorSteamimg', (msg) => {
-        if (receiver == null){
-          console.log("receiver is null")
-	} else {
-          console.log("Send",msg,"to",receiver)
-	  io.to(receiver).emit('clientResponeSteam', msg)
-	}
+        //if (receiver == null){
+         // console.log("receiver is null")
+	//} else {
+         // console.log("Send msg to",receiver)
+	  socket.broadcast.emit('clientResponeSteam', msg)
+	//}
         console.log(msg)
     // socket.emit('clientResponeSteam', "data:image/jpeg;base64,"+ msg);
  //   socket.emit('clientResponeSteam', msg)
