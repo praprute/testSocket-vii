@@ -1,8 +1,8 @@
 //const app = require('express')()
-const http = require('http').createServer(app)
-const cors = require('cors');
 const express      = require('express')
 const app          = express()
+const http = require('http').createServer(app)
+const cors = require('cors');
 const test = require('./routes/routeall')
 
 app.use(cors({
