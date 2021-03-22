@@ -44,7 +44,7 @@ io.on('connection', (socket) => {
          // console.log("Send msg to",receiver)
 	  socket.broadcast.emit('clientResponeSteam', msg)
 	//}
-        console.log(msg)
+        console.log('message : ', msg)
     // socket.emit('clientResponeSteam', "data:image/jpeg;base64,"+ msg);
  //   socket.emit('clientResponeSteam', msg)
   });
