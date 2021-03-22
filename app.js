@@ -1,10 +1,14 @@
-
-const app = require('express')()
+//const app = require('express')()
 const http = require('http').createServer(app)
 const cors = require('cors');
+const express      = require('express')
+const app          = express()
+const test = require('./routes/routeall')
+
 app.use(cors({
   origin: "*"
 }))
+app.use(express.json())
 const io = require('socket.io')(http, {
   cors: {
       origin: "*",
@@ -13,18 +17,17 @@ const io = require('socket.io')(http, {
       credentials: false
   }
 });
-const path = require('path');
-const fs = require('fs')
-const dir = './pic'
-var imgValue 
-var receiver = null
+// const path = require('path');
+// const fs = require('fs')
+// const dir = './pic'
+// var imgValue 
+// var receiver = null
 
 io.on('connection', (socket) => {
-    var id = socket.id;
-//    console.log(id)   
+    var id = socket.id;  
 //    socket.emit("GetID", id)
 //    socket.on('SetReceiverID', (id) => {
-//	console.log("SetReceiverID",id)
+//	  console.log("SetReceiverID",id)
  //      receiver = id
  //   })
     socket.on('RecieveBs64FromAI', (b64Img) => {
@@ -38,26 +41,19 @@ io.on('connection', (socket) => {
 
 
     socket.on('MonitorSteamimg', (msg) => {
-        //if (receiver == null){
-         // console.log("receiver is null")
-	//} else {
-         // console.log("Send msg to",receiver)
+      
 	  socket.broadcast.emit('clientResponeSteam', msg)
-	//}
-        console.log('message : ', msg)
+    console.log('message : ', msg)
     // socket.emit('clientResponeSteam', "data:image/jpeg;base64,"+ msg);
- //   socket.emit('clientResponeSteam', msg)
+    // socket.emit('clientResponeSteam', msg)
   });
-
-
-
 })
+
+app.use('/api', test)
 
 http.listen(4001, function() {
   console.log('listening on port 4001')
 })
-
-
 
 
 
